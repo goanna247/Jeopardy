@@ -12,7 +12,7 @@ function App() {
     <Router>
       <div className='container'>
         <Route path="/" exact component={Help}/>
-        <Route path="/AdminView" exact component={AdminView}/>
+        <Route path="/Admin" exact component={AdminView}/>
         <Route path="/TeamView" exact component={TeamView}/>
         <Route path="/ScreenView" exact component={ScreenView}/>
       </div>

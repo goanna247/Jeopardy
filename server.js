@@ -15,7 +15,8 @@ const app = express();
 app.use(
   bodyParser.urlencoded({
     extended: false
-  })
+  }),
+  cors()
 );
 app.use(bodyParser.json());
 
