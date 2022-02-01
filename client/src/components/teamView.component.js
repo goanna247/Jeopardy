@@ -1,17 +1,13 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
 
 export default class TeamView extends Component {
   render() {
     return (
-      <nav>
-        <h1>Hello world</h1>
-        {/* show the team score, avaliable help lines
-            buzzer*/}
-      </nav>
+      <div>
+        <h1>Team View</h1>
+      </div>
     );
   }
 }
 
-
-// can do as a kahoot
+//shown on a screen for players, has a buzzer

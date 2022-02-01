@@ -1,23 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, BrowserRouter as Router, Link } from 'react-router-dom';
-import { Routes, Route } from "react-router";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import Login from "./components/login.component";
-import TeamView from "./components/teamView.component";
-import OrganiserView from './components/organiserView.component';
-import ScreenView from './components/screenView.component';
+import Help from "./Components/Help.component";
+import AdminView from './Components/AdminView.component';
+import ScreenView from './Components/ScreenView.component';
+import TeamView from './Components/TeamView.component';
 
 function App() {
   return (
-    <div className='container'>
-      
-       <Routes>
-        <Route path="/" exact element={<Login/>}/>
-      </Routes>
-     
-    </div>
+    <Router>
+      <div className='container'>
+        <Route path="/" exact component={Help}/>
+        <Route path="/AdminView" exact component={AdminView}/>
+        <Route path="/TeamView" exact component={TeamView}/>
+        <Route path="/ScreenView" exact component={ScreenView}/>
+      </div>
+    </Router>
   );
 }
 

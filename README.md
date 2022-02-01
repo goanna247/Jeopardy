@@ -1,1 +1,4 @@
-Code for Jeopardy nights, idk why i made this so complex
+Code for Jeopardy nights
+
+
+Warning: This project purposefully uses old depencies because the new versions were breaking

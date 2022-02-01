@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
 
+//view showed on the big screen
 export default class ScreenView extends Component {
   render() {
-    return(
-      <nav>
-        <h1>Jeopardy night!</h1>
-      </nav>
+    return (
+      <div>
+        <h1>Screen View</h1>
+      </div>
     );
   }
 }

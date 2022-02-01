@@ -37,7 +37,7 @@ require("./config/passport")(passport);
 app.use("/users", users);
 app.use('/questions', questionsRouter);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server up and running on port ${port}`));
 
 // app.use(cors());
