@@ -80,12 +80,18 @@ export default class QuestionManager extends Component {
       catagory: '',
       session: ''
     })
+
+    window.location = '/Admin'; //reload
   }
 
   componentDidMount() {
     axios.get('http://localhost:5000/questions/')
-      .then(response => { this.setState({ questions: response.data })})
-      .catch((error) => { console.log(error);})
+      .then(response => { 
+        this.setState({ questions: response.data })
+      })
+      .catch((error) => { 
+        console.log(error);
+      })
   }
 
   deleteQuestion(id) {
@@ -100,7 +106,9 @@ export default class QuestionManager extends Component {
   questionList() {
     return this.state.questions.map(currentQuestion => {
       return <Question question={currentQuestion} deleteQuestion={this.deleteQuestion} key={currentQuestion._id}/>;
+      // return <Question question={currentQuestion}/>
     })
+    // return <h1>Helki</h1>;
   }
   
   
@@ -111,14 +119,14 @@ export default class QuestionManager extends Component {
         <div className="ExistingQuestions">
           <h4>Existing Questions: </h4>
           <table className="table">
-            <thead className="thead-light">
+            {/* <thead className="thead-light">
               <tr>
                 <th>Points:</th>
                 <th>Question:</th>
                 <th>catagory</th>
                 <th>session</th>
               </tr>
-            </thead>
+            </thead> */}
             <tbody>
               {this.questionList() }
             </tbody>
@@ -164,6 +172,6 @@ export default class QuestionManager extends Component {
           </form>
         </div>
       </div>
-    );
+    )
   }
 }

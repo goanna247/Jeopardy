@@ -1,9 +1,13 @@
 const router = require('express').Router();
 let User = require('../../models/User');
 
-router.route('/:user').get((req, res) => {
-  User.findOne(req.params.user)
-    .then(users => res.json(users))
+router.route('/').get((req, res) => {
+  // User.findOne(req.params.user)
+  //   .then(users => res.json(users))
+  //   .catch(err => res.status(400).json('Error: ' + err));
+
+  User.find()
+    .then(questions => res.json(questions))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

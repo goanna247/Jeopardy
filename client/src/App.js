@@ -13,8 +13,8 @@ function App() {
       <div className='container'>
         <Route path="/" exact component={Help}/>
         <Route path="/Admin" exact component={AdminView}/>
-        <Route path="/TeamView" exact component={TeamView}/>
-        <Route path="/ScreenView" exact component={ScreenView}/>
+        <Route path="/Team" exact component={TeamView}/>
+        <Route path="/Screen" exact component={ScreenView}/>
       </div>
     </Router>
   );

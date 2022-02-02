@@ -69,6 +69,9 @@ export default class UsersManager extends Component {
       password: '',
       session: ''
     })
+
+    window.location = '/Admin';
+    //reload the page so you can actually see new entry
   }
 
   componentDidMount() {

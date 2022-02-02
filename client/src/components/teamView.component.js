@@ -5,6 +5,7 @@ export default class TeamView extends Component {
     return (
       <div>
         <h1>Team View</h1>
+        <button className="answerButton">ANSWER</button>
       </div>
     );
   }

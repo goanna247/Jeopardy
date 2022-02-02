@@ -1,10 +1,13 @@
 const router = require('express').Router();
 let Question = require('../../models/Question');
 
-router.route('/:question').get((req, res) => {
-  Question.findOne(req.params.question)
+router.route('/').get((req, res) => {
+  // Question.findOne(req.params.question)
+  //   .then(questions => res.json(questions))
+  //   .catch(err => res.status(400).json('Error' + err));
+  Question.find()
     .then(questions => res.json(questions))
-    .catch(err => res.status(400).json('Error' + err));
+    .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/add').post((req, res) => {
