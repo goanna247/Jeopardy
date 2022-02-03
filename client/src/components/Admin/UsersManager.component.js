@@ -7,6 +7,7 @@ const User = props => (
     <td>{props.user.username}</td>
     <td>{props.user.password}</td>
     <td>{props.user.session}</td>
+    <td>{props.user.points}</td>
     <td>
       <Link to={"/edit/"+props.user._id}>edit</Link> | <a href="#" onClick={() => {props.deleteUser(props.user._id)}}>delete</a>
     </td>
@@ -21,13 +22,15 @@ export default class UsersManager extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeSession = this.onChangeSession.bind(this);
+    this.onChangePoints = this.onChangePoints.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       users: [],
       username: '',
       password: '',
-      session: ''
+      session: '',
+      points: '',
     }
   }
 
@@ -49,13 +52,20 @@ export default class UsersManager extends Component {
     })
   }
 
+  onChangePoints(e) {
+    this.setState({
+      points: e.target.value
+    })
+  }
+
   onSubmit(e) {
     e.preventDefault();
 
     const user = {
       username: this.state.username,
       password: this.state.password,
-      session: this.state.session
+      session: this.state.session,
+      points: this.state.points
     }
 
     console.log(user);
@@ -67,7 +77,8 @@ export default class UsersManager extends Component {
     this.setState({
       username: '',
       password: '',
-      session: ''
+      session: '',
+      points: '',
     })
 
     window.location = '/Admin';
@@ -113,6 +124,7 @@ export default class UsersManager extends Component {
                 <th>Username</th>
                 <th>Password</th>
                 <th>Session</th>
+                <th>Points</th>
               </tr>
             </thead>
             <tbody>
@@ -145,6 +157,13 @@ export default class UsersManager extends Component {
                     className="form-control"
                     value={this.state.session}
                     onChange={this.onChangeSession}
+              />
+              <label>Points: </label>
+              <input type="number"
+                    required
+                    className="form-control"
+                    value={this.state.points}
+                    onChange={this.onChangePoints}
               />
             </div>
             <div className="form-group">

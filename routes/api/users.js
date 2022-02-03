@@ -15,11 +15,13 @@ router.route('/add').post((req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   const session = req.body.session;
+  const points = req.body.points;
 
   const newUser = new User({
     username,
     password,
-    session
+    session,
+    points
   });
 
   newUser.save()
@@ -27,18 +29,19 @@ router.route('/add').post((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:id').get((req, res) => {
-  User.findById(req.params.id)
-    .then(user => res.json(user))
+router.route('/:id').delete((req, res) => {
+  User.findByIdAndDelete(req.params.id)
+    .then(user => res.json('User deleted'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:id').delete((req, res) => {
+router.route('/update/:id').post((req, res) => {
   User.findById(req.params.id)
     .then(user => {
       user.username = req.body.username;
       user.password = req.body.password;
       user.session = req.body.session;
+      user.points = req.body.points;
 
       user.save()
         .then(() => res.json('User updated'))

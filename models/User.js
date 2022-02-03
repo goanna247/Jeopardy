@@ -6,6 +6,7 @@ const userSchema = new Schema({
   username: { type: String, required: true },
   password: { type: String, required: true },
   session: { type: Number, required: true },
+  points: { type: Number, required: false },
 }, {
   timestamps: false,
 });
