@@ -7,6 +7,7 @@ import AdminView from './Components/AdminView.component';
 import ScreenView from './Components/ScreenView.component';
 import TeamView from './Components/TeamView.component';
 import UpdateUser from './Components/Admin/UpdateUser.component';
+import UpdateQuestion from './Components/Admin/UpdateQuestion.component';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" exact component={Help}/>
         <Route path="/Admin" exact component={AdminView}/>
         <Route path="/edit/:id" component={UpdateUser} />
+        <Route path="/editq/:id" component={UpdateQuestion} />
         <Route path="/Team" exact component={TeamView}/>
         <Route path="/Screen" exact component={ScreenView}/>
       </div>

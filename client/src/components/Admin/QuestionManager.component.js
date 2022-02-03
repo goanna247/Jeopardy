@@ -1,28 +1,28 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import axios from "axios";
+import axios from 'axios';
 
-const Question = props => {
+const Question = props => (
   <tr>
     <td>{props.question.points}</td>
     <td>{props.question.question}</td>
     <td>{props.question.catagory}</td>
     <td>{props.question.session}</td>
     <td>
-      <Link to={"/edit/"+props.question._id}>edit</Link> | <a href="#" onClick={() => {props.deleteQuestion(props.question._id)}}>delete</a>
+      <Link to={"/editq/"+props.question._id}>edit</Link> | <a href="#" onClick={() => {props.deleteQuestion(props.question._id)}}>delete</a>
     </td>
   </tr>
-}
+)
 
 export default class QuestionManager extends Component {
   constructor(props) {
     super(props);
 
-    this.deleteQuestion = this.deleteQuestion.bind(this);
+    this.deleteQuestion = this.deleteQuestion.bind(this)
     this.onChangePoints = this.onChangePoints.bind(this);
     this.onChangeQuestion = this.onChangeQuestion.bind(this);
-    this.onChangeCatagory = this.onChangeCatagory.bind(this);
     this.onChangeSession = this.onChangeSession.bind(this);
+    this.onChangeCatagory = this.onChangeCatagory.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -30,14 +30,8 @@ export default class QuestionManager extends Component {
       points: '',
       question: '',
       catagory: '',
-      session: ''
+      session: '',
     }
-  }
-
-  onChangeCatagory(e) {
-    this.setState({
-      catagory: e.target.value
-    })
   }
 
   onChangePoints(e) {
@@ -52,6 +46,12 @@ export default class QuestionManager extends Component {
     })
   }
 
+  onChangeCatagory(e) {
+    this.setState({
+      catagory: e.target.value
+    })
+  }
+
   onChangeSession(e) {
     this.setState({
       session: e.target.value
@@ -61,16 +61,16 @@ export default class QuestionManager extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const questions = {
+    const question = {
       points: this.state.points,
       question: this.state.question,
       catagory: this.state.catagory,
       session: this.state.session
     }
 
-    console.log(questions);
+    console.log(question);
 
-    axios.post('http://localhost:5000/questions/add', questions)
+    axios.post('http://localhost:5000/questions/add', question)
       .then(res => console.log(res.data))
       .catch((error) => console.log(error))
 
@@ -78,10 +78,11 @@ export default class QuestionManager extends Component {
       points: '',
       question: '',
       catagory: '',
-      session: ''
+      points: '',
     })
 
-    window.location = '/Admin'; //reload
+    window.location = '/Admin';
+    //reload the page so you can actually see new entry
   }
 
   componentDidMount() {
@@ -89,13 +90,13 @@ export default class QuestionManager extends Component {
       .then(response => { 
         this.setState({ questions: response.data })
       })
-      .catch((error) => { 
+      .catch((error) => {
         console.log(error);
       })
   }
 
   deleteQuestion(id) {
-    axios.delete('http://localhost:5000/questions/' + id) 
+    axios.delete('http://localhost:5000/questions/' + id)
       .then(response => { console.log(response.data)});
 
     this.setState({
@@ -104,29 +105,28 @@ export default class QuestionManager extends Component {
   }
 
   questionList() {
-    return this.state.questions.map(currentQuestion => {
-      return <Question question={currentQuestion} deleteQuestion={this.deleteQuestion} key={currentQuestion._id}/>;
-      // return <Question question={currentQuestion}/>
+    return this.state.questions.map(currentquestion => {
+      return <Question question={currentquestion} deleteQuestion={this.deleteQuestion} key={currentquestion._id}/>;
     })
-    // return <h1>Helki</h1>;
   }
-  
-  
+
+
   render() {
     return (
       <div>
-        <h1>QUESTIONS!</h1>
+        <h1>Questions!</h1>
+        
         <div className="ExistingQuestions">
           <h4>Existing Questions: </h4>
           <table className="table">
-            {/* <thead className="thead-light">
+            <thead className="thead-light">
               <tr>
-                <th>Points:</th>
-                <th>Question:</th>
-                <th>catagory</th>
-                <th>session</th>
+                <th>Points</th>
+                <th>Question</th>
+                <th>Catagory</th>
+                <th>Session</th>
               </tr>
-            </thead> */}
+            </thead>
             <tbody>
               {this.questionList() }
             </tbody>
@@ -144,14 +144,14 @@ export default class QuestionManager extends Component {
                     value={this.state.points}
                     onChange={this.onChangePoints}
               />
-              <label>question: </label>
+              <label>Question: </label>
               <input type="text"
                     required
                     className="form-control"
                     value={this.state.question}
                     onChange={this.onChangeQuestion}
               />
-              <label>catagory: </label>
+              <label>Catagory: </label>
               <input type="text"
                     required
                     className="form-control"
@@ -167,11 +167,11 @@ export default class QuestionManager extends Component {
               />
             </div>
             <div className="form-group">
-              <input type="submit" value="Create Question" className="btn btn-primary"/>
+              <input type="submit" value="Create User" className="btn btn-primary"/>
             </div>
           </form>
         </div>
       </div>
-    )
+    );
   }
 }

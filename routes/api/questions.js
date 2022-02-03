@@ -24,7 +24,7 @@ router.route('/add').post((req, res) => {
   });
 
   newQuestion.save()
-  .then(() => res.json('Question added'))
+  .then(() => res.json('Question added!'))
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -36,7 +36,7 @@ router.route('/:id').get((req, res) => {
 
 router.route('/:id').delete((req, res) => {
   Question.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Question deleted'))
+    .then(question => res.json('Question deleted'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -44,7 +44,7 @@ router.route('/update/:id').post((req, res) => {
   Question.findById(req.params.id)
     .then(question => {
       question.points = req.body.points;
-      question.question = req.body.questions;
+      question.question = req.body.question;
       question.catagory = req.body.catagory;
       question.session = req.body.session;
 
